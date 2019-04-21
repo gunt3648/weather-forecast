@@ -1,20 +1,25 @@
 import { WeatherService } from './../../services/weather/weather.service';
-import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Observable, interval, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ClockService } from '../../services/clock/clock.service';
+import { flatMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-weather-board',
   templateUrl: './weather-board.component.html',
   styleUrls: ['./weather-board.component.scss']
 })
-export class WeatherBoardComponent implements OnInit {
+export class WeatherBoardComponent implements OnInit, OnDestroy {
 
   location = 'Bangkok';
 
   clock$: Observable<Date>;
+
+  weather: any;
   weather$: Observable<any>;
+
+  private subscription: Subscription;
 
   constructor(
     private clockService: ClockService,
@@ -23,11 +28,12 @@ export class WeatherBoardComponent implements OnInit {
 
   ngOnInit() {
     this.setClock();
-    this.setWeather(this.location);
+    this.setWeatherWithInterval(this.location);
+    this.subscription = this.weather$.subscribe(data => this.weather = data);
   }
 
-  public log(data: any) {
-    console.log(data);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private setClock(): void {
@@ -48,8 +54,13 @@ export class WeatherBoardComponent implements OnInit {
      ${sec.length > 1 ? sec : '0' + sec}`;
   }
 
-  private setWeather(location: string): void {
-    this.weather$ = this.weatherService.getWeather(location);
+  public setWeatherWithInterval(location: string): void {
+    this.weather$ =
+      interval(30 * 1000)
+        .pipe(
+          startWith(0),
+          flatMap(() => this.weatherService.getWeather(location))
+        );
   }
 
   public getWeatherConditionIcon(weather: any): string {

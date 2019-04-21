@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 
@@ -17,6 +18,11 @@ export class WeatherService {
   public getWeather(location: string): Observable<any> {
     return this.httpClient.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${this.api_key}&units=metric`
+      ).pipe(
+        map(result => {
+          console.log(result);
+          return result;
+        })
       );
   }
 }

@@ -13,7 +13,7 @@
           {{ location }}
         </h3>
         <br />
-        <div *ngIf="weather$ | async as weather; else loading">
+        <div *ngIf="weather; else loading">
           <div class="text-center">
             <img [src]="getWeatherConditionIcon(weather)" />
           </div>
