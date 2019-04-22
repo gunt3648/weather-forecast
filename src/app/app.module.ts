@@ -1,20 +1,28 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { UnderConstructComponent } from './under-construct/under-construct.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { UnderConstructComponent } from './components/under-construct/under-construct.component';
+import { TempMonitoringComponent } from './components/temp-monitoring/temp-monitoring.component';
+import { WeatherBoardComponent } from './components/weather-board/weather-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    UnderConstructComponent
+    UnderConstructComponent,
+    TempMonitoringComponent,
+    WeatherBoardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

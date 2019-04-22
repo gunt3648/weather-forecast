@@ -1,0 +1,43 @@
+<div *ngIf="clock$ | async as clock; else loading">
+  <h1 class="header-date">
+    {{ getDate(clock) }}
+  </h1>
+
+  <div class="weather-board">
+    <div class="row">
+      <div class="col-12 mt-3 mb-3">
+        <h1>
+          {{ getTime(clock) }}
+        </h1>
+        <h3>
+          {{ location }}
+        </h3>
+        <br />
+        <div *ngIf="weather; else loading">
+          <div class="text-center">
+            <img [src]="getWeatherConditionIcon(weather)" />
+          </div>
+          <h3>
+            {{ (weather)? weather.weather[0].description : 'Api error..' }}
+          </h3>
+          <br />
+          <h3>
+            Celsius: {{ weather?.main.temp }}, Fahrenheit: {{ convertFtoC( weather?.main.temp ) }}
+          </h3>
+          <br />
+          <h3>
+            humidity: {{ weather?.main.humidity }}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="text-center loading">
+    <div class="spinner-grow text-light" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
