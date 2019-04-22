@@ -1,0 +1,66 @@
+@import "../../../assets/theme.scss";
+
+.under-construct {
+
+  h1,
+  p {
+    color: $font;
+
+    text-align: center;
+    position: relative;
+  }
+
+  .content {
+
+    h1 {
+      font-size: 10em;
+      line-height: 1em;
+
+      top: 0.6em;
+
+      @media only screen and (max-width: 426px) {
+        font-size: 3em;
+
+        top: 3em;
+      }
+    }
+
+    p {
+      font-size: 1.5em;
+
+      top: 5em;
+
+      @media only screen and (max-width: 426px) {
+        font-size: 1em;
+
+        top: 12em;
+      }
+    }
+  }
+
+  .bottom {
+    p {
+      font-size: 1em;
+
+      top: 20em;
+
+      @media only screen and (max-width: 426px) {
+        font-size: 1em;
+
+        top: 24em;
+      }
+
+      a {
+        color: yellow;
+        font-size: 1.2em;
+        text-decoration: none;
+
+        margin: 0 5px;
+      }
+
+      a:hover {
+        color: white;
+      }
+    }
+  }
+}

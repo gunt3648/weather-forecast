@@ -1,9 +1,11 @@
-@import "../../assets/theme.scss";
+@import "../../../assets/theme.scss";
 
-.under-construct {
-  h1, p {
+.page-not-found {
+
+  h1,
+  p {
     color: $font;
-    
+
     text-align: center;
     position: relative;
   }
@@ -12,18 +14,24 @@
     font-size: 10em;
     line-height: 1em;
 
-    top: 0.1em;
+    top: 0.6em;
 
     @media only screen and (max-width: 426px) {
-      font-size: 8em;
+      font-size: 3em;
+
+      top: 3em;
     }
   }
 
   p {
     font-size: 1.5em;
 
+    top: 5em;
+
     @media only screen and (max-width: 426px) {
       font-size: 1em;
+
+      top: 12em;
     }
   }
 }
