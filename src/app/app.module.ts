@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { UnderConstructComponent } from './components/under-construct/under-construct.component';
 import { TempMonitoringComponent } from './components/temp-monitoring/temp-monitoring.component';
 import { WeatherBoardComponent } from './components/weather-board/weather-board.component';
+import { TempChartComponent } from './components/temp-chart/temp-chart.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { WeatherBoardComponent } from './components/weather-board/weather-board.
     PageNotFoundComponent,
     UnderConstructComponent,
     TempMonitoringComponent,
-    WeatherBoardComponent
+    WeatherBoardComponent,
+    TempChartComponent
   ],
   imports: [
     BrowserModule,

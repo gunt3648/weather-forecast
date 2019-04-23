@@ -1,37 +1,106 @@
-<div *ngIf="clock$ | async as clock; else loading">
-  <h1 class="header-date">
-    {{ getDate(clock) }}
-  </h1>
-
-  <div class="weather-board">
-    <div class="row">
-      <div class="col-12 mt-3 mb-3">
+<div class="container" *ngIf="clock$ | async as clock; else loading">
+  <div *ngIf="weather; else loading">
+    <div class="row text-center">
+      <div class="col-6 date-section" *ngIf="getDate(clock) as date">
         <h1>
-          {{ getTime(clock) }}
+          {{ date.day }}
         </h1>
         <h3>
-          {{ location }}
+          {{ date.date }}
         </h3>
-        <br />
-        <div *ngIf="weather; else loading">
-          <div class="text-center">
-            <img [src]="getWeatherConditionIcon(weather)" />
-          </div>
-          <h3>
+      </div>
+      <div class="col-6 time-section">
+        <h1>
+          {{ getTime(clock) }}
+          <i class="material-icons">
+            schedule
+          </i>
+        </h1>
+      </div>
+    </div>
+    <br />
+    <div class="row text-center">
+      <div class="col-10 location-section ml-auto">
+        <h1>
+          {{ location }}
+        </h1>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-xl-3 weather-con-section">
+        <div class="weather-con-group text-center text-capitalize">
+          <p>
             {{ (weather)? weather.weather[0].description : 'Api error..' }}
-          </h3>
+          </p>
+          <img class="weather-icon" [src]="getWeatherConditionIcon(weather)" />
+        </div>
+      </div>
+      <div class="col-xl-2 temp-section">
+        <div class="temp-group">
+          <h1>
+            {{ weather?.main.temp }}
+          </h1>
+          <p>
+            Celsius
+          </p>
+          <div class="extra">
+            <p>
+              TEMP MAX: {{ weather?.main.temp_max }}
+            </p>
+            <p>
+              TEMP MIN: {{ weather?.main.temp_min }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 temp-section">
+        <div class="temp-group">
+          <h1>
+            {{ convertFtoC( weather?.main.temp ) }}
+          </h1>
+          <p>
+            Fahrenheit
+          </p>
+          <div class="extra">
+            <p>
+              TEMP MAX: {{ convertFtoC( weather?.main.temp_max ) }}
+            </p>
+            <p>
+              TEMP MIN: {{ convertFtoC( weather?.main.temp_min ) }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-5 extra-section">
+        <div class="extra-group">
+          <p>
+            humidity: {{ weather?.main.humidity }} %
+          </p>
+          <p>
+            pressure: {{ weather?.main.pressure }} hPa
+          </p>
+          <p>
+            wind speed: {{ weather?.wind.speed }} m/s
+          </p>
           <br />
-          <h3>
-            Celsius: {{ weather?.main.temp }}, Fahrenheit: {{ convertFtoC( weather?.main.temp ) }}
-          </h3>
-          <br />
-          <h3>
-            humidity: {{ weather?.main.humidity }}
-          </h3>
+          <p>
+            sun rise: {{ convertTime(weather?.sys.sunrise) }}
+          </p>
+          <p>
+            sun set: {{ convertTime(weather?.sys.sunset) }}
+          </p>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="icons-credit">
+  <p class="text-center align-text-bottom">Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a>
+    from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a><br /> is licensed by <a
+      href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+  </p>
 </div>
 
 <ng-template #loading>
@@ -41,3 +110,13 @@
     </div>
   </div>
 </ng-template>
+
+<!-- 
+<h3>
+  Celsius: , Fahrenheit: 
+</h3>
+<br />
+<h3>
+  humidity: {{ weather?.main.humidity }}
+</h3> 
+-->

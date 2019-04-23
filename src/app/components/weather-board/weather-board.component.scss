@@ -1,29 +1,140 @@
 @import "../../../assets/theme.scss";
 
-.header-date {
-  position: relative;
-  top: -0.4em;
-
+.date-section {
   color: $font;
 
-  text-align: center;
-
-  font-size: 2.5em;
-  font-weight: bold;
-  line-height: 1em;
-}
-
-.weather-board {
-  background-color: $background-alt;
-
-  h1,
-  h3 {
-    color: $font-alt;
-    font-weight: bold;
-
-    text-align: center;
+  h1 {
+    font-size: 3em;
   }
 
+  @media only screen and (max-width: 950px) {
+    h1 {
+      font-size: 2em;
+    }
+  }
+}
+
+.time-section {
+  color: $font;
+  background-color: $secondary;
+
+  h1 {
+    font-size: 5em;
+    font-weight: bold;
+
+    @media only screen and (max-width: 1224px) {
+      font-size: 3em;
+    }
+  }
+
+  i {
+    font-size: 1em;
+    position: relative;
+    top: 0.15em;
+
+    @media only screen and (max-width: 1460px) {
+      display: none;
+    }
+  }
+}
+
+.location-section {
+  color: $font;
+  
+  padding: 2em 0;
+  background-color: $third;
+
+  h1 {
+    font-size: 3.6em;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+
+    @media only screen and (max-width: 1224px) {
+      font-size: 3em;
+    }
+  }
+}
+
+.weather-con-section {
+  color: $font;
+  background-color: $secondary;
+
+  p {
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+
+  .weather-con-group {
+    margin: 0.6em;
+  }
+
+  .weather-icon {
+    margin: -1em 1em 0em 1em;
+    max-width: 100px;
+  }
+}
+
+.temp-section {
+  color: $font-alt;
+  background-color: $fourth;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .temp-group {
+    margin: 0.5em;
+  }
+
+  .extra {
+    p {
+      font-size: 0.8em;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.extra-section {
+  color: $font-alt;
+  background-color: $fifth;
+
+  .extra-group {
+    margin: 0.5em;
+
+    p {
+      font-size: 1em;
+      margin-bottom: 0;
+    }
+  }
+
+  @media only screen and (max-width: 1199px) {
+    display: none;
+  }
+}
+
+.icons-credit {
+  position: relative;
+  
+  p {
+    margin-bottom: 0;
+    color: $font;
+  
+    a {
+      color: yellow;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    top: 6.4em;
+  }
+
+  @media only screen and (min-width: 1600px) {
+    top: 8em;
+  }
+}
+
+.material-icons {
+  font-family: 'Material Icons' !important;
 }
 
 .loading {

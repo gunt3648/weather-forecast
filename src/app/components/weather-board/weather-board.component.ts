@@ -40,9 +40,13 @@ export class WeatherBoardComponent implements OnInit, OnDestroy {
     this.clock$ = this.clockService.getClock();
   }
 
-  public getDate(date: Date): string {
+  public getDate(date: Date): ShortDate {
+    const week: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dateString: string[] = date.toDateString().split(' ');
-    return `${dateString[0]}, ${dateString[1]} ${dateString[2]}, ${dateString[3]}`;
+    return {
+      day: week[date.getDay()],
+      date: `${dateString[1]} ${dateString[2]}, ${dateString[3]}`
+    };
   }
 
   public getTime(date: Date): string {
@@ -54,7 +58,7 @@ export class WeatherBoardComponent implements OnInit, OnDestroy {
      ${sec.length > 1 ? sec : '0' + sec}`;
   }
 
-  public setWeatherWithInterval(location: string): void {
+  private setWeatherWithInterval(location: string): void {
     this.weather$ =
       interval(30 * 1000)
         .pipe(
@@ -65,14 +69,25 @@ export class WeatherBoardComponent implements OnInit, OnDestroy {
 
   public getWeatherConditionIcon(weather: any): string {
     try {
-      return `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+      return `../../../assets/icons/${weather.weather[0].icon}.png`;
     } catch (err) {
       return '';
     }
   }
 
-  public convertFtoC(fahrenheit: number) {
+  public convertFtoC(fahrenheit: number): number {
     const celsius = fahrenheit * 1.8 + 32;
     return Math.round(celsius * 100) / 100;
   }
+
+  public convertTime(duration: number): string {
+    const fullDate: Date = new Date(1000 * duration);
+    const date: ShortDate = this.getDate(fullDate);
+    return `${date.date} @${fullDate.getHours()}: ${fullDate.getMinutes()}`;
+  }
+}
+
+interface ShortDate {
+  day: string;
+  date: string;
 }
