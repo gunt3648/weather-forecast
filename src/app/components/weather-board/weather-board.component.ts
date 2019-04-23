@@ -1,9 +1,8 @@
 import { WeatherService } from './../../services/weather/weather.service';
-import { Observable, interval, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ClockService } from '../../services/clock/clock.service';
-import { flatMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-weather-board',
@@ -59,12 +58,7 @@ export class WeatherBoardComponent implements OnInit, OnDestroy {
   }
 
   private setWeatherWithInterval(location: string): void {
-    this.weather$ =
-      interval(30 * 1000)
-        .pipe(
-          startWith(0),
-          flatMap(() => this.weatherService.getWeather(location))
-        );
+    this.weather$ = this.weatherService.getWeatherWithInterval(location);
   }
 
   public getWeatherConditionIcon(weather: any): string {
