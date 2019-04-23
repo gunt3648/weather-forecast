@@ -1,0 +1,35 @@
+@import "../../../assets/theme.scss";
+
+.temp-chart {
+  
+  iframe {
+    height: 260px;
+    border: none;
+  }
+
+  h1 {
+    color: $font-alt;
+
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 426px) {
+    .laptop {
+      display: none;
+    }
+
+    .mobile {
+      display: block;
+    }
+  }
+
+  @media only screen and (min-width: 427px) {
+    .laptop {
+      display: block;
+    }
+
+    .mobile {
+      display: none;
+    }
+  }
+}
