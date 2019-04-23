@@ -33,10 +33,14 @@
 
     app-weather-board {
       position: relative;
-      top: 5em;
+      top: 4.6em;
+
+      @media only screen and (max-width: 1200px) {
+        top: 3em;
+      }
     }
 
-    @media only screen and (max-width: 426px) {
+    @media only screen and (max-width: 767px) {
       display: none;
     }
   }
@@ -46,15 +50,19 @@
     background-color: $background-alt;
 
     h1 {
+      font-size: 2em;
       color: $font-alt;
-
-      margin-left: 2em;
 
       @media only screen and (max-width: 426px) {
         font-size: 2em;
 
         margin-left: 0;
       }
+    }
+
+    app-temp-chart {
+      position: relative;
+      top: 5em;
     }
   }
 
